@@ -26,6 +26,7 @@ var hangmanGame = {
         this.guessesAvailable -= 1;
         if (this.guessesAvailable === 0) {
             alert("YOU LOSE")
+            resetGame();
         }
         // console.log(this.guessesAvailable);
     }
@@ -33,17 +34,24 @@ var hangmanGame = {
 }
 
 function resetGame() {
+
+   
     
     word = hangmanGame.newWord[Math.floor(Math.random() * hangmanGame.newWord.length)];
     gameWord = word.toString().split("");
+
     
     for (var i = 0; i < gameWord.length; i++) {
         hangmanGame.answerArray[i] = "_";
     }
     
     console.log(gameWord);
+
     
-    hangmanGame.remainingLetters = hangmanGame.answerArray.length
+    hangmanGame.remainingLetters = hangmanGame.answerArray.length;
+    hangmanGame.guessesAvailable = 10;
+
+   
 }
 
 
