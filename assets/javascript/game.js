@@ -1,12 +1,13 @@
 var hangmanGame = {
-    word: ["c", "o", "f", "f", "e", "e"],
+    newWord: ["homer", "classroom", "coffee", "phone"],
+    // word: ["c", "o", "f", "f", "e", "e"],
     answerArray: [],
     remainingLetters: 0,
     guessesAvailable: 10,
     correctGuesses: function () {
 
-        for (var j = 0; j < this.word.length; j++) {
-            if (this.word[j] === guess) {
+        for (var j = 0; j < gameWord.length; j++) {
+            if (gameWord[j] === guess) {
                 this.answerArray[j] = guess;
                 this.remainingLetters--;
             }
@@ -14,6 +15,11 @@ var hangmanGame = {
         // console.log(this.answerArray)
         if (this.remainingLetters === 0) {
             alert("YOU WIN");
+            // newWord2 = this.newWord[Math.floor(Math.random() * this.newWord.length)];
+            // word = newWord2.toString().split("");
+
+            resetGame();
+            // console.log(newWord3.split(""))
         }
     },
     incorrectGuesses: function () {
@@ -26,18 +32,30 @@ var hangmanGame = {
 
 }
 
-for (var i = 0; i < hangmanGame.word.length; i++) {
-    hangmanGame.answerArray[i] = "_";
+function resetGame() {
+    
+    word = hangmanGame.newWord[Math.floor(Math.random() * hangmanGame.newWord.length)];
+    gameWord = word.toString().split("");
+    
+    for (var i = 0; i < gameWord.length; i++) {
+        hangmanGame.answerArray[i] = "_";
+    }
+    
+    console.log(gameWord);
+    
+    hangmanGame.remainingLetters = hangmanGame.answerArray.length
 }
 
-hangmanGame.remainingLetters = hangmanGame.answerArray.length,
+
+
+resetGame();
 
     document.onkeyup = function (event) {
         var userGuess = event.key;
         guess = userGuess;
 
 
-        if (hangmanGame.word.includes(guess)) {
+        if (gameWord.includes(guess)) {
             hangmanGame.correctGuesses();
             document.getElementById("letters").innerHTML = "THE WORD IS: " + hangmanGame.answerArray;
         } else {
