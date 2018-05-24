@@ -1,9 +1,12 @@
+
+
+
 var hangmanGame = {
-    newWord: ["homer", "classroom", "coffee", "phone"],
-    // word: ["c", "o", "f", "f", "e", "e"],
+    newWord: ["homer", "coffee", "phone"],
     answerArray: [],
     remainingLetters: 0,
     guessesAvailable: 10,
+    incorrectLetters: [],
     correctGuesses: function () {
 
         for (var j = 0; j < gameWord.length; j++) {
@@ -12,32 +15,37 @@ var hangmanGame = {
                 this.remainingLetters--;
             }
         }
-        // console.log(this.answerArray)
+
         if (this.remainingLetters === 0) {
             alert("YOU WIN");
-            // newWord2 = this.newWord[Math.floor(Math.random() * this.newWord.length)];
-            // word = newWord2.toString().split("");
 
             resetGame();
-            // console.log(newWord3.split(""))
         }
     },
     incorrectGuesses: function () {
+        if (this.incorrectLetters.includes(guess)) {
+            alert("You already guessed this letter");
+        } else {
+        this.incorrectLetters.push(guess);
         this.guessesAvailable -= 1;
+        }
+
         if (this.guessesAvailable === 0) {
             alert("YOU LOSE")
             resetGame();
         }
-        // console.log(this.guessesAvailable);
+      
     }
 
 }
+
 
 function resetGame() {
 
    
     
     word = hangmanGame.newWord[Math.floor(Math.random() * hangmanGame.newWord.length)];
+    hangmanGame.newWord.splice(hangmanGame.newWord.indexOf(word), 1);
     gameWord = word.toString().split("");
 
     
@@ -46,17 +54,27 @@ function resetGame() {
     }
     
     console.log(gameWord);
-
-    
     hangmanGame.remainingLetters = hangmanGame.answerArray.length;
     hangmanGame.guessesAvailable = 10;
+    hangmanGame.incorrectLetters = [];
+
+
+    
+    document.getElementById("guessed-letters").innerHTML = "INCORRECT LETTERS " + hangmanGame.incorrectLetters;
+    document.getElementById("lives").innerHTML = "LIVES REMAINING: " + hangmanGame.guessesAvailable;
+
 
    
+    resetWord = document.getElementById("letters")
+    resetWord.innerHTML = "THE WORD IS: " + hangmanGame.answerArray;
+
+  
 }
 
-
-
 resetGame();
+
+
+
 
     document.onkeyup = function (event) {
         var userGuess = event.key;
@@ -65,9 +83,12 @@ resetGame();
 
         if (gameWord.includes(guess)) {
             hangmanGame.correctGuesses();
-            document.getElementById("letters").innerHTML = "THE WORD IS: " + hangmanGame.answerArray;
+          document.getElementById("letters").innerHTML = "THE WORD IS: " + hangmanGame.answerArray;
+            
+            
         } else {
             hangmanGame.incorrectGuesses();
+            document.getElementById("guessed-letters").innerHTML = "INCORRECT LETTERS " + hangmanGame.incorrectLetters;
             document.getElementById("lives").innerHTML = "LIVES REMAINING: " + hangmanGame.guessesAvailable;
         }
 
