@@ -34,6 +34,7 @@ var hangmanGame = {
     word = hangmanGame.newWord[Math.floor(Math.random() * hangmanGame.newWord.length)];
     hangmanGame.newWord.splice(hangmanGame.newWord.indexOf(word), 1);
     gameWord = word.toString().split("");
+    hangmanGame.answerArray = [];
 
     for (var i = 0; i < gameWord.length; i++) {
         hangmanGame.answerArray[i] = "_";
