@@ -46,9 +46,7 @@ var hangmanGame = {
     hangmanGame.incorrectLetters = [];
     document.getElementById("guessed-letters").innerHTML = "INCORRECT LETTERS " + hangmanGame.incorrectLetters;
     document.getElementById("lives").innerHTML = "LIVES REMAINING: " + hangmanGame.guessesAvailable;
-    // document.getElementById("letters").innerHTML = "";
-    resetWord = document.getElementById("letters")
-    resetWord.innerHTML = "THE WORD IS: " + hangmanGame.answerArray;
+    document.getElementById("letters").innerHTML = "THE WORD IS: " + hangmanGame.answerArray;
 }
 
 resetGame();
