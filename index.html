@@ -32,14 +32,14 @@
                 <h4 class="alert-heading">GREAT JOB!!</h4>
                 <p>You guessed the word correctly!</p>
                 <hr>
-                <button class="mb-0" onclick="resetGame()">Click here to start a new game!</button>
+                <button type="button" class="btn btn-outline-info" onclick="resetGame()">Click here to start a new game!</button>
               </div>
 
               <div class="alert alert-danger" id= "loss-message" role="alert">
                     <h4 class="alert-heading">NICE TRY!!</h4>
                     <p id= "show-word"></p>
                     <hr>
-                    <button class="mb-0" >Click here to try again!</button>
+                    <button type="button" class="btn btn-outline-info" >Click here to try again!</button>
                     <script>
                             $( "button" ).click(function() {
                                 resetGame();

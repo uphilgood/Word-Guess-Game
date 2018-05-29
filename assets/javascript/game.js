@@ -19,9 +19,7 @@ var hangmanGame = {
             this.correctLetters.push(guess);
         }
         if (this.remainingLetters === 0) {
-            // alert("YOU WIN! The word is " + gameWord.join("") + "!");
             x.style.display = "block"
-            // resetGame();
         }
     },
     incorrectGuesses: function () {
@@ -33,25 +31,23 @@ var hangmanGame = {
         }
         if (this.guessesAvailable === 0) {
             y.style.display = "block"
-            document.getElementById("show-word").innerHTML = "The word was " + gameWord.join("") + " but don't give up!"
-            
-           
+            document.getElementById("show-word").innerHTML = "The word was " + gameWord.join("").toUpperCase() + " but don't give up!"
         }
     }
 };
 
 var resetGame = () => {
-        x = document.getElementById("win-message");
-        x.style.display = "none" 
-        y = document.getElementById("loss-message");
-        y.style.display = "none" 
+    x = document.getElementById("win-message")
+    x.style.display = "none"
+    y = document.getElementById("loss-message")
+    y.style.display = "none"
     word = hangmanGame.newWord[Math.floor(Math.random() * hangmanGame.newWord.length)];
     hangmanGame.newWord.splice(hangmanGame.newWord.indexOf(word), 1);
     gameWord = word.toString().split("");
     hangmanGame.answerArray = [];
 
     for (var i = 0; i < gameWord.length; i++) {
-        hangmanGame.answerArray[i] = "_";
+        hangmanGame.answerArray[i] = " _ ";
     }
 
     console.log(gameWord);
@@ -79,6 +75,3 @@ document.onkeyup = function (event) {
         document.getElementById("lives").innerHTML = "LIVES REMAINING: " + hangmanGame.guessesAvailable;
     }
 };
-
-
-
