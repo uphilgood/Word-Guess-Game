@@ -39,7 +39,12 @@
                     <h4 class="alert-heading">NICE TRY!!</h4>
                     <p id= "show-word"></p>
                     <hr>
-                    <button class="mb-0" onclick="resetGame()">Click here to try again!</button>
+                    <button class="mb-0" >Click here to try again!</button>
+                    <script>
+                            $( "button" ).click(function() {
+                                resetGame();
+                            });
+                            </script>
                   </div>
     </div>
 </div>
