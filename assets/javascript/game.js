@@ -1,5 +1,5 @@
 var hangmanGame = {
-    newWord: ["homer", "coffee", "phone", "television", "couch", "beer"],
+    newWord: ["javascript", "angular", "node", "react", "vue", "jquery", "html", "css"],
     answerArray: [],
     remainingLetters: 0,
     guessesAvailable: 10,
